@@ -5,12 +5,12 @@ import 'package:clean_architecture/features/data/models/person_model.dart';
 import 'package:http/http.dart' as http;
 
 abstract class PersonRemoteDataSource {
-  /// Calls the https://rickandmortyapi.com/api/charaters/?page=1 endpoint.
+  /// Calls the https://rickandmortyapi.com/api/characters/?page=1 endpoint.
   ///
   /// Throws a [ServerException] for all error codes.
   Future<List<PersonModel>> getAllPersons(int page);
 
-  /// Calls the https://rickandmortyapi.com/api/charaters/?name=rick endpoint.
+  /// Calls the https://rickandmortyapi.com/api/characters/?name=rick endpoint.
   ///
   /// Throws a [ServerException] for all error codes.
   Future<List<PersonModel>> searchPerson(String query);
@@ -23,12 +23,12 @@ class PersonRemoteDataSourceImpl implements PersonRemoteDataSource {
 
   @override
   Future<List<PersonModel>> getAllPersons(int page) => _getPersonFromUrl(
-    'https://rickandmortyapi.com/api/charaters/?page=$page',
+    'https://rickandmortyapi.com/api/character/?page=$page',
   );
 
   @override
   Future<List<PersonModel>> searchPerson(String query) => _getPersonFromUrl(
-    'https://rickandmortyapi.com/api/charaters/?page=$query',
+    'https://rickandmortyapi.com/api/character/?name=$query',
   );
 
   Future<List<PersonModel>> _getPersonFromUrl(String url) async {
